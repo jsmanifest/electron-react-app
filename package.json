@@ -2,15 +2,34 @@
   "name": "electron-react-typescript-app",
   "version": "0.1.0",
   "private": true,
+  "main": "src/start.js",
+  "build": {
+    "appId": "some.id.ofyours",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "category": "your.app.category.type",
+      "iconUrl": "path-to-icon.png"
+    },
+    "mac": {
+      "category": "your.app.category.type",
+      "iconUrl": "path-to-icon.png"
+    }
+  },
   "dependencies": {
+    "electron": "^6.0.12",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "electron": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
+    "electron-build": "electron-builder",
+    "start": "cross-env BROWSER=none npm run react-start",
+    "react-start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "react-test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -27,5 +46,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "electron-builder": "^21.2.0",
+    "electron-is-dev": "^1.1.0",
+    "electron-reload": "^1.5.0",
+    "nodemon": "^1.19.3"
   }
 }
